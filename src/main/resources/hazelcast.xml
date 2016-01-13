@@ -1,0 +1,32 @@
+<hazelcast>
+	<group>
+		<name>ipocc-dev</name>
+		<password>ipocc-dev</password>
+	</group>
+	<network>
+		<port auto-increment="true">5701</port>
+		<interfaces enabled="true">
+			<interface>127.0.0.1</interface>
+		</interfaces>
+		<join>
+			<tcp-ip enabled="true">
+				<member>127.0.0.1</member>
+			</tcp-ip>
+			<aws enabled="false">
+                <access-key>my-access-key</access-key>
+                <secret-key>my-secret-key</secret-key>
+                <region>us-west-1</region>
+                <host-header>ec2.amazonaws.com</host-header>
+                <security-group-name>hazelcast-sg</security-group-name>
+                <tag-key>type</tag-key>
+                <tag-value>hz-nodes</tag-value>
+            </aws>
+		</join>
+	</network>
+
+	<map name="myevent.store">
+		<backup-count>1</backup-count>
+		<time-to-live-seconds>1200</time-to-live-seconds>
+	</map>
+
+</hazelcast>
